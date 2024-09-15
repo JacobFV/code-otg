@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GitHub Mobile Editor</title>
+    <link rel="manifest" href="data:application/manifest+json,{
+        &quot;name&quot;: &quot;GitHub Mobile Editor&quot;,
+        &quot;short_name&quot;: &quot;GitMobile&quot;,
+        &quot;start_url&quot;: &quot;.&quot;,
+        &quot;display&quot;: &quot;standalone&quot;,
+        &quot;background_color&quot;: &quot;#ffffff&quot;,
+        &quot;theme_color&quot;: &quot;#24292e&quot;,
+        &quot;icons&quot;: [{
+            &quot;src&quot;: &quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEz0lEQVRYhe2XW2xUVRSGv7VnprS0paUtImCR0ooIKPhgQhHjBbzEqEF8wJgoMTExQSGKCr54iRKFQIgxXiJqNAGfTAgGFTQxGkXA+gJYLAqUSgtT2k6n0+nMnLP3Xj7MdDq3TmenEh58+CeTOWfttf6z/7X3PkeJCNdzaVxnBKbm3ycDHQjbgE3Ar8C5UpVUyaA3C3QV5qgHzgK7gCeADYVaXcBxpdTFUu2UdAsqpXzP81qUUl3ANuC+QmgU+BD4SKmS3d+EvtgtWJicAegHtgL3F0JtwHoReQBYNNhuoQOnx1bKIXInoi6igxQxDXrPLGXVzAaiGVDqIGK6UepL4HtgXgF+Bfgc2AfQHfHYsbK9JPNxQwWWCrrR+8oCdI8mllGoP4GbEbmvsmEwHlP8MsxQp5aNpwDZAkB3OYCPgVVZV+9ZxeKeFl5v9TgaAdHXAGqNMasAykR4IaXZm3Txfav3CppAoZGNABGNbj2E+fTuFsELVGNk6bEod4w0zKhOIRdfUErVicjRTCDAOoBUnwuBaK35OGrj9SnwTYTi8SwmVxGa+qK0e2m0WNIUvXMlcBTgfE7xYcINsJXwJiBD5OwvTKmRrOm7pWUynK2GRYOEKmIgGgBNy6EUgRjGVqVxEyMuAGQQ0ykozcSnDiI9o93S+tW3OInKqzXSwjD1lU7bM3FGLuzkgT0XqYsJYj5FWHhFl7fHPuBmrbV94Cvmf/Yb8z47Dsag/lkHUwMGODQjqV3lI1KQHVBuHLXnKGMP3E3NtNqRgVU6wLG89GgRKKBKDNrJlxqhGGIiA2bYrLF5EpXYL81YRfKG15BgAsQvWKVA9WUYEhZnFm8glqd4JVNJEQgUhN9kIkHbipfxGl9BRIeKVFrCyRiMtkJO+QUMFYgVAGMO9OYFJ0yAtBXmAEpryJxHtx4EbSN+ByCKi2MnkJxO2OGKTgUmHQ5zR7XuZmTfMTCGgZ9T6DM9ACROXsAkM/kNVX4TIrkhM2FBDTVrHwXg4pOvkNp5KF8kAuJZKGVh1XeT3P4T9c8/glVTlU8COXQK+7Ov85Oc8IaGXf7C2kxNWAQnvES8+gVsHtzHqGfXY08YNyRrHk2QeOdr3N+7EV9T9+wmrMmNCI7lbD1aw5w4zqRDOyi/5xaQ/K9qcOGtjbh7jgJQ9dAC6rY8g1VTOYQQBAHJZJJMJjOyG0SE8+fPo8UQjI0TnG4nuGA8YiN1K+ajwraMb3iXUOtsqp9Yilc3fRBhWRaVlZXEYrF8KyqlqKmpGRmgvb2ddDqNtmxCbhiVzgKeQMxGv/cB2qv2cH7lCsIT6kEMiEHaDiKJFH3f7KV7yVoEyduICJZlEQ6HSSaT9PT0XF0HQqEQ4XB40NNGRCwRqS2qCTchVy9ckGvl9xVDYj0vLxQRsW07fyMRESyVApI51/3zYrFwq+m69Pl+O96IIkdELJRSk0PJNF6Vm1ugp/Fv0nmTwsEcxDz/Vne8EQWEh2o6nT6slLoDeJeiOcO1WE4mS+y66UZOHYl/K8KtRbGrNB6yjuBkuiXVm0Lav0OkyqitaOMqrRElGSWWJdRVRrjWnZY3/k/Afz4F/wDnHCnG3SQgMAAAAABJRU5ErkJggg==&quot;,
+            &quot;sizes&quot;: &quot;64x64&quot;,
+            &quot;type&quot;: &quot;image/png&quot;
+        }]
+    }">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            overscroll-behavior-y: contain;
+        }
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        header {
+            background-color: #24292e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        main {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screen {
+            display: none;
+            height: 100%;
+            padding: 10px;
+        }
+        #login-screen { display: block; }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #e1e4e8;
+            display: flex;
+            align-items: center;
+        }
+        li:active {
+            background-color: #f6f8fa;
+        }
+        .icon {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        #editor {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: 1px solid #e1e4e8;
+        }
+        #commit-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: #f6f8fa;
+            border-top: 1px solid #e1e4e8;
+            display: flex;
+        }
+        #commit-message {
+            flex-grow: 1;
+            margin-right: 10px;
+            padding: 5px;
+        }
+        .button {
+            background-color: #2ea44f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #back-button {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <button id="back-button" onclick="goBack()" style="display:none;">←</button>
+            <h1 id="header-title">GitHub Mobile Editor</h1>
+        </header>
+        <main>
+            <div id="login-screen" class="screen">
+                <input type="text" id="token" placeholder="Enter GitHub Personal Access Token" style="width:100%; padding:10px; margin-bottom:10px;">
+                <button class="button" onclick="login()" style="width:100%;">Login</button>
+            </div>
+            <div id="repo-list-screen" class="screen">
+                <ul id="repo-list"></ul>
+            </div>
+            <div id="file-list-screen" class="screen">
+                <ul id="file-list"></ul>
+            </div>
+            <div id="editor-screen" class="screen">
+                <div id="editor"></div>
+                <div id="commit-bar">
+                    <input type="text" id="commit-message" placeholder="Commit message">
+                    <button class="button" onclick="commitChanges()">Commit</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script>
+        let token, currentRepo, currentPath, editor;
+        const screens = ['login-screen', 'repo-list-screen', 'file-list-screen', 'editor-screen'];
+        const headerTitle = document.getElementById('header-title');
+        const backButton = document.getElementById('back-button');
+
+        function showScreen(screenId) {
+            screens.forEach(id => document.getElementById(id).style.display = 'none');
+            document.getElementById(screenId).style.display = 'block';
+            backButton.style.display = screenId === 'login-screen' ? 'none' : 'block';
+        }
+
+        function goBack() {
+            if (currentPath) {
+                currentPath = currentPath.split('/').slice(0, -1).join('/');
+                loadFileList();
+            } else if (currentRepo) {
+                currentRepo = null;
+                loadRepoList();
+            } else {
+                showScreen('repo-list-screen');
+            }
+        }
+
+        async function login() {
+            token = document.getElementById('token').value;
+            try {
+                await loadRepoList();
+                showScreen('repo-list-screen');
+            } catch (error) {
+                alert('Login failed. Please check your token and try again.');
+            }
+        }
+
+        async function loadRepoList() {
+            headerTitle.textContent = 'Your Repositories';
+            const response = await fetch('https://api.github.com/user/repos', {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            const repos = await response.json();
+            const repoList = document.getElementById('repo-list');
+            repoList.innerHTML = repos.map(repo => `
+                <li onclick="selectRepo('${repo.full_name}')">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                    </svg>
+                    ${repo.name}
+                </li>
+            `).join('');
+            showScreen('repo-list-screen');
+        }
+
+        function selectRepo(repoName) {
+            currentRepo = repoName;
+            currentPath = '';
+            loadFileList();
+        }
+
+        async function loadFileList() {
+            headerTitle.textContent = currentRepo;
+            const response = await fetch(`https://api.github.com/repos/${currentRepo}/contents/${currentPath}`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            const files = await response.json();
+            const fileList = document.getElementById('file-list');
+            fileList.innerHTML = files.map(file => `
+                <li onclick="selectFile('${file.path}', '${file.type}')">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="${file.type === 'dir' ? 
+                            'M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1 .75 1.75 0 0016 13.25V2.75A1.75 1.75 0 0014.25 1H1.75zm1.75 1.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V2.75a.25.25 0 00-.25-.25H3.5z' : 
+                            'M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z'
+                        }"></path>
+                    </svg>
+                    ${file.name}
+                </li>
+            `).join('');
+            showScreen('file-list-screen');
+        }
+
+        async function selectFile(path, type) {
+            if (type === 'dir') {
+                currentPath = path;
+                loadFileList();
+            } else {
+                const response = await fetch(`https://api.github.com/repos/${currentRepo}/contents/${path}`, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                const file = await response.json();
+                const content = atob(file.content);
+                showEditor(path, content);
+            }
+        }
+
+        function showEditor(path, content) {
+            headerTitle.textContent = path.split('/').pop();
+            if (!editor) {
+                editor = ace.edit("editor");
+                editor.setTheme("ace/theme/monokai");
+                editor.session.setMode("ace/mode/javascript");
+            }
+            editor.setValue(content, -1);
+            showScreen('editor-screen');
+        }
+
+        async function commitChanges() {
+            const path = headerTitle.textContent;
+            const content = editor.getValue();
+            const message = document.getElementById('commit-message').value;
+            if (!message) {
+                alert('Please enter a commit message');
+                return;
+            }
+
+            try {
+                // Get the current file to retrieve its SHA
+                const getResponse = await fetch(`https://api.github.com/repos/${currentRepo}/contents/${currentPath}/${path}`, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                const currentFile = await getResponse.json();
+
+                // Commit the changes
+                const response = await fetch(`https://api.github.com/repos/${currentRepo}/contents/${currentPath}/${path}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        content: btoa(content),
+                        sha: currentFile.sha
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Changes committed successfully');
+                    loadFileList();
+                } else {
+                    throw new Error('Failed to commit changes');
+                }
+            } catch (error) {
+                alert('Error committing changes: ' + error.message);
+            }
+        }
+
+        // Handle swipe gestures for navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX && touchEndX < touchStartX - 50) {
+                // Swipe left, go forward (if possible)
+            }
+            if (touchEndX > touchStartX && touchEndX > touchStartX + 50) {
+                // Swipe right, go back
+                goBack();
+            }
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
